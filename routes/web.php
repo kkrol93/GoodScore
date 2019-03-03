@@ -19,6 +19,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/ajax', 'HomeController@ajax')->name('ajax');
 Route::get('/scores', 'HomeController@scores')->name('scores');
 Route::get('/rewards', 'HomeController@rewards')->name('rewards');
 Route::get('/regulamin', 'HomeController@regulamin')->name('regulamin');
@@ -32,6 +33,7 @@ Route::prefix('admin')->group(function() {
   Route::post('/news-panel', 'AdminController@newspost');
   Route::get('/news-panel/{id}', 'AdminController@editnews');
   Route::patch('/news-panel/{id}', 'AdminController@updatenews');
+  Route::delete('/news-panel/{id}', 'AdminController@destroynews');
   Route::get('/users-panel', 'AdminController@userspanel')->name('admin.users-panel');
   Route::get('/users-panel/register', 'AdminController@registerpanel')->name('admin.register-panel');
   Route::get('/scores-panel', 'AdminController@scorespanel')->name('admin.scores-panel');

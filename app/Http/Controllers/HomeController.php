@@ -32,19 +32,31 @@ class HomeController extends Controller
     {
         $properties = User::where('id', '=', Auth::user()->id)->get();
         $news = News::latest()->get();
-        $usertable = DB::table('users')
-            ->select('name', 'surname', 'quiz', 'sales')
-            ->orderBy('quiz')
-            ->limit(3)
-            ->get();
+        
             $quiz = DB::table('quiz')
             ->select('question', 'ans1', 'ans2', 'ans3', 'ans4', 'cans')
             ->orderBy('id')
-            ->limit(1)
+            
             ->get();
-        return view('home')->with('home', $news)->with('user', $properties)->with('usertable', $usertable)->with('quiz', $quiz);;
+            $usertable = User::get(['name', 'surname', 'quiz', 'sales']);
+        $usertable = $usertable->sortByDesc(function ($user) {
+            return $user->total;
+        });
+          
+           
+        return view('home')->with('home', $news)->with('userq', $properties)->with('usertable', $usertable)->with('quiz', $quiz);
 
 
+    }
+    public function ajax() 
+    {
+        $properties = User::where('id', '=', Auth::user()->id)->get();
+        $quiz = DB::table('quiz')
+        ->select('question', 'ans1', 'ans2', 'ans3', 'ans4', 'cans')
+        ->orderBy('id')
+        
+        ->get();
+        return view('ajax')->with('user', $properties)->with('quiz', $quiz);
     }
 
     public function scores()
@@ -75,7 +87,10 @@ class HomeController extends Controller
     public function checkquiz()
     {
       $input = Request::all();
-     if  question_name = $request->input('question_name = $request->input('ans');');
+      $properties = User::where('id', '=', Auth::user()->id)->get();
+     if (input === $quiz->ans){
+        $proporties->question += 1;
+     }
       return redirect('#');
     }
 

@@ -15,7 +15,7 @@
             </div>
             <div class="col-md-9">
                 <div class="row">
-                    <div class="col-12 card"> Witaj, @foreach ($user as $user ) {{$user->name}} {{$user->surname }} @endforeach
+                    <div class="col-12 card"> Witaj, @foreach ($userq as $userq ) {{$userq->name}} {{$userq->surname }} @endforeach
                            
                          
                           
@@ -40,26 +40,25 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                    @foreach ($usertable as $key => $usertable )
-                                    @php
-                                    $quizpkt = $usertable->quiz/30*80;
-                                    $salespkt= $usertable->sales/100*120;;
-                                    $allpkt = $quizpkt+$salespkt;
-                                    
-                                    
-                                    @endphp 
-                              <tr>
-                              <th scope="row">{{ ++$key }}</th>
-                              <td>{{$usertable->name}}</td>
-                              <td>{{$usertable->surname}}</td>
-                              <td>{{round($quizpkt)}}pkt</td>
-                              <td>{{round($salespkt)}}pkt</td>
-                              <td>{{round($allpkt)}}pkt</td>
-                        
-                              
-                              </tr>
-                           
-                              @endforeach
+                                @foreach ($usertable->slice(0, 3) as $user )
+                                                  {{--@php--}}
+                                                  {{--$quizpkt = $usertable->quiz/30*80;--}}
+                                                  {{--$salespkt= $usertable->sales/100*120;;--}}
+                                                  {{--$allpkt = $quizpkt+$salespkt;--}}
+                                                  {{----}}
+                                                  {{----}}
+                                                  {{--@endphp --}}
+                                            <tr>
+                                            <th scope="row">{{ $loop->iteration }}</th>
+                                            <td>{{$user->name}}</td>
+                                            <td>{{$user->surname}}</td>
+                                            <td>{{$user->quizpkt}}pkt</td>
+                                            <td>{{$user->salespkt}}pkt</td>
+                                            <td>{{$user->total}}pkt</td>
+
+                                            </tr>
+                                         
+                                            @endforeach
                             </tbody>
                             </table>
 

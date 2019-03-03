@@ -36,7 +36,12 @@
             
                 @foreach ($news as $news )
                 <div class="col-11 news-edit"><div class="row">
-                 <a href="{{url('admin/news-panel',$news->id)}}" class="col-2 btn">Edytuj</a><a href="{{url('admin/news-panel',$news->id)}}" class="col-2 btn">Usuń</a><div class="col-8">{{$news->title}}</div>
+                 <a href="{{url('admin/news-panel',$news->id)}}" class="col-2 btn">Edytuj</a>
+                 {!!Form::open(['action' => ['AdminController@destroynews', $news->id], 'method' => 'POST', 'class' => 'col-2'])!!}
+                {{Form::hidden('_method', 'DELETE')}}
+                {{Form::submit('Delete', ['class' => 'btn btn-red'])}}
+            {!!Form::close()!!}
+               <div class="col-7 news-text">{{$news->title}}</div>
                 </div></div>
                 @endforeach
         </div>

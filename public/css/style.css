@@ -107,6 +107,8 @@ input {
       font-size: 16px;
       font-weight:700;
       background-color: transparent; 
+      height: 50px;
+      line-height: 29px;
   }
   .btn:hover{
       background-color: #008240;
@@ -280,4 +282,48 @@ textarea:focus, .btn:focus {
 }
 a{
     text-decoration: none;
+}
+.inputs {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    width: 100%;
+}
+.inputs input {
+    flex-basis: 5%;
+    height: 13px;
+    line-height: 20px;
+    margin: 4px 0px;
+    
+    
+}
+.odp1, .odp2, .odp3, .odp4 {
+     flex-basis: 20%;
+   
+}
+.question {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.quiz {
+    padding: 30px;
+    width:100%;
+}
+.quiz-btn {
+    display: block;
+    margin: 0 auto;
+    width: 300px;
+}
+.btn-red {
+    border-color: red;
+    color:red;
+    margin-left: 20px;
+}.btn-red:hover {
+    color:white;
+    background-color: red;    
+}
+.news-text {
+    line-height: 50px;
 }

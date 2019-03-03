@@ -50,7 +50,14 @@ class AdminController extends Controller
     public function updatenews($id, CreateNewsRequest $request)
     {
         $news = News::findorfail($id);
-        $news->update($request->all());
+        $news->destroy($request->all());
+        return redirect('/admin/news-panel');
+    }
+ 
+    public function destroynews($id)
+    {
+        $news = News::find($id);
+        $news->delete();
         return redirect('/admin/news-panel');
     }
     
