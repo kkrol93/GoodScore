@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 use Request;
 use App\Http\Requests;
 use App\Http\Requests\CreateNewsRequest;
+use App\Http\Requests\CreateExamRequest;
 use App\News;
 use App\User;
+use App\exam;
 
 class AdminController extends Controller
 {
@@ -50,7 +52,7 @@ class AdminController extends Controller
     public function updatenews($id, CreateNewsRequest $request)
     {
         $news = News::findorfail($id);
-        $news->destroy($request->all());
+        $news->update($request->all());
         return redirect('/admin/news-panel');
     }
  
@@ -78,4 +80,38 @@ class AdminController extends Controller
     {
         return view('auth/register');
     }
+    public function quizpost()
+    {
+      $input = Request::all();
+      exam::create($input);
+      return redirect('#');
+    }
+    public function exampanel()
+    {
+        $exam = exam::latest()->get();
+        return view('quiz-panel')->with('exam', $exam);
+    }
+   
+    public function editexam($id)
+    {
+     $exam = exam::find($id);
+      return view('edit-quiz')->with('exam', $exam);
+      $input = Request::all();
+      exam::update($input);
+      return redirect('#');
+    }
+    public function updateexam($id, CreateExamRequest $request)
+    {
+        $exam = exam::findorfail($id);
+        $exam->update($request->all());
+        return redirect('/admin/quiz-panel');
+    }
+ 
+    public function destroyexam($id)
+    {
+        $exam = exam::find($id);
+        $exam->delete();
+        return redirect('/admin/quiz-panel');
+    }
 }
+

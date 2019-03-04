@@ -96,9 +96,8 @@
     let data;
     $.post({
         url: '../resources/views/ajax.blade.php',
-        type: 'GET',
-        data: data,
-        id: {{$userq->id}},
+        type: 'post',
+        data:{ id: {{$userq->id}} } ,
         success: function(data){
             
         }
@@ -119,9 +118,8 @@
                  let data;
                 $.post({
                 url: '../resources/views/ajaxpos.blade.php',
-                type: 'GET',
-                data: data,
-                id: {{ $userq->id }},
+                type: 'post',
+                data:{ id: {{$userq->id}} } ,
                 success: function(data){
             
                 }

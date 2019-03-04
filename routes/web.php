@@ -30,7 +30,7 @@ Route::prefix('admin')->group(function() {
   Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
   Route::get('/', 'AdminController@index')->name('admin.dashboard');
   Route::get('/news-panel', 'AdminController@newspanel')->name('admin.news-panel');
-  Route::post('/news-panel', 'AdminController@newspost');
+  Route::post('/news-panel', 'AdminController@newspost');  
   Route::get('/news-panel/{id}', 'AdminController@editnews');
   Route::patch('/news-panel/{id}', 'AdminController@updatenews');
   Route::delete('/news-panel/{id}', 'AdminController@destroynews');
@@ -39,7 +39,11 @@ Route::prefix('admin')->group(function() {
   Route::get('/scores-panel', 'AdminController@scorespanel')->name('admin.scores-panel');
   Route::get('/quiz-panel', 'AdminController@quizpanel')->name('admin.quiz-panel');
   Route::get('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
-  
+  Route::post('/quiz-panel', 'AdminController@quizpost');
+  Route::get('/quiz-panel', 'AdminController@exampanel')->name('admin.quiz-panel');  
+  Route::get('/quiz-panel/{id}', 'AdminController@editexam');
+  Route::patch('/quiz-panel/{id}', 'AdminController@updateexam');
+  Route::delete('/quiz-panel/{id}', 'AdminController@destroyexam');
   
   // Password reset routes
   Route::post('/password/email', 'Auth\AdminForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');

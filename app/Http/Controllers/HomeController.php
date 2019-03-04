@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\Quotation;
 use App\News;
-use App\Quiz;
+use App\exam;
 use App\Admin;
 use Auth;
 use App\User;
@@ -33,7 +33,7 @@ class HomeController extends Controller
         $properties = User::where('id', '=', Auth::user()->id)->get();
         $news = News::latest()->get();
         
-            $quiz = DB::table('quiz')
+            $quiz = DB::table('exams')
             ->select('question', 'ans1', 'ans2', 'ans3', 'ans4', 'cans')
             ->orderBy('id')
             
@@ -51,7 +51,7 @@ class HomeController extends Controller
     public function ajax() 
     {
         $properties = User::where('id', '=', Auth::user()->id)->get();
-        $quiz = DB::table('quiz')
+        $quiz = DB::table('exams')
         ->select('question', 'ans1', 'ans2', 'ans3', 'ans4', 'cans')
         ->orderBy('id')
         
@@ -86,12 +86,8 @@ class HomeController extends Controller
     }
     public function checkquiz()
     {
-      $input = Request::all();
-      $properties = User::where('id', '=', Auth::user()->id)->get();
-     if (input === $quiz->ans){
-        $proporties->question += 1;
-     }
-      return redirect('#');
+   
+     
     }
 
 
