@@ -7,9 +7,47 @@
    
        
       
-    <div class="col-md-3 card"> 
+    <div class="col-md-8 card"> 
         <div class="row justify-content-center">
-        <a href="{{ route('admin.register-panel') }}" class="add"><div class="add-icons"><i class="fas fa-plus"></i><i class="fas fa-user"></i></div><div>Dodaj użytkownika</div></a>
+                {!! Form::open(['url'=>'admin/users-panel', 'class'=>'col-11']) !!}
+           
+                <div class="form-group">
+                    <div class="col-12 control-label">
+                         {!! Form::label('name', 'Imię:') !!}
+                    </div>
+                    <div class="col-12">
+                        {!! Form::text('name',null,['class'=>'']) !!}
+                    </div>
+                </div>
+                <div class="form-group">
+                        <div class="col-12 control-label">
+                             {!! Form::label('surname', 'Nazwisko:') !!}
+                        </div>
+                        <div class="col-12">
+                            {!! Form::text('surname',null,['class'=>'']) !!}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                    <div class="col-12 control-label">
+                         {!! Form::label('email', 'E-mail:') !!}
+                    </div>
+                    <div class="col-12">
+                        {!! Form::text('email',null,['class'=>'']) !!}
+                    </div>
+                </div>
+                <div class="form-group">
+                        <div class="col-12 control-label">
+                             {!! Form::label('password', 'Hasło:') !!}
+                        </div>
+                        <div class="col-12">
+                            {!! Form::password('password',null,['class'=>'']) !!}
+                        </div>
+                </div>
+                
+                 <div class="form-group">
+                         {!! Form::submit('Zapisz', ['class'=>'col-6 col-md-3 btn']) !!}
+                 </div>
+         {!! Form::close() !!}  
         </div>
     </div>
    <div class="col-12 table-responsive">
@@ -23,6 +61,7 @@
                                             <th scope="col">Sprzedaż</th>
                                             <th scope="col">Suma pkt.</th>
                                             <th scope="col">Edytuj</th>
+                                            <th scope="col">Usuń</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -44,7 +83,13 @@
                                             <td>{{round($quizpkt)}}pkt</td>
                                             <td>{{round($salespkt)}}pkt</td>
                                             <td>{{round($allpkt)}}pkt</td>
-                                            <td><a href="#" class="btn">Edytuj</a></td>    
+                                            <td><a href="{{url('admin/users-panel',$users->id)}}" class="col-12 btn">Edytuj</a></td>
+                                            <td>
+                                                    {!!Form::open(['action' => ['AdminController@destroyuser', $users->id], 'method' => 'POST', 'class' => 'col-12'])!!}
+                                                    {{Form::hidden('_method', 'DELETE')}}
+                                                    {{Form::submit('Usuń', ['class' => 'btn btn-red'])}}
+                                                {!!Form::close()!!}  
+                                            </td>    
                                             
                                             </tr>
                                          

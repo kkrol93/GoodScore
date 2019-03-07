@@ -5,6 +5,7 @@ use Request;
 use App\Http\Requests;
 use App\Http\Requests\CreateNewsRequest;
 use App\Http\Requests\CreateExamRequest;
+use App\Http\Requests\CreateUsersRequest;
 use App\News;
 use App\User;
 use App\exam;
@@ -41,6 +42,12 @@ class AdminController extends Controller
       News::create($input);
       return redirect('#');
     }
+    public function useradd()
+    {
+      $input = Request::all();
+      User::create($input);
+      return redirect('#');
+    }
     public function editnews($id)
     {
      $news = News::find($id);
@@ -70,7 +77,14 @@ class AdminController extends Controller
     }
     public function scorespanel()
     {
-        return view('scores-panel');
+        $usertable = User::get(['name', 'surname', 'quiz', 'sales']);
+        $usertable = $usertable->sortByDesc(function ($user) {
+            return $user->total;
+        });
+        $userSum = User::avg('sales');
+        $userQuiz = User::avg('quiz');
+       
+        return view('scores-panel')->with('usertable', $usertable)->with('usersum', $userSum)->with('userQuiz', $userQuiz);
     }
     public function quizpanel()
     {
@@ -112,6 +126,27 @@ class AdminController extends Controller
         $exam = exam::find($id);
         $exam->delete();
         return redirect('/admin/quiz-panel');
+    }
+    public function edituser($id)
+    {
+     $user = User::find($id);
+      return view('edit-users')->with('user', $user);
+      $input = Request::all();
+      User::update($input);
+      return redirect('#');
+    }
+    public function updateuser($id, CreateUsersRequest $request)
+    {
+        $user = User::findorfail($id);
+        $user->update($request->all());
+        return redirect('/admin/users-panel');
+    }
+ 
+    public function destroyuser($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        return redirect('/admin/users-panel');
     }
 }
 

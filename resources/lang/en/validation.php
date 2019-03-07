@@ -128,8 +128,8 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'new-password' => [
+            'new-password' => 'twoja stara',
         ],
     ],
 

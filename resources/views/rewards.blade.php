@@ -11,6 +11,7 @@
                 <a href="{{ route('scores') }}" class="nav">Moje wyniki</a>
                 <a href="{{ route('rewards') }}" class="nav">Nagrody</a>
                 <a href="{{ route('regulamin') }}" class="nav">Regulamin</a>
+                <a href="{{ route('changePassword') }}" class="nav">Zmień hasło</a>
                 
             </div>
             <div class="col-md-9">

@@ -68,13 +68,13 @@
             {!! Form::close() !!}          
             
                 @foreach ($exam as $exam )
-                <div class="col-11 exam-edit"><div class="row">
-                 <a href="{{url('admin/quiz-panel',$exam->id)}}" class="col-2 btn">Edytuj</a>
-                 {!!Form::open(['action' => ['AdminController@destroyexam', $exam->id], 'method' => 'POST', 'class' => 'col-2'])!!}
+                <div class="col-11 exam-edit"><div class="row justify-content-center">
+                 <a href="{{url('admin/quiz-panel',$exam->id)}}" class="col-5 col-md-2 btn">Edytuj</a>
+                 {!!Form::open(['action' => ['AdminController@destroyexam', $exam->id], 'method' => 'POST', 'class' => 'col-5 col-md-2'])!!}
                 {{Form::hidden('_method', 'DELETE')}}
                 {{Form::submit('Delete', ['class' => 'btn btn-red'])}}
             {!!Form::close()!!}
-               <div class="col-7 news-text">{{$exam->question}}</div>
+               <div class="col-12 col-md-7 news-text">{{$exam->question}}</div>
                 </div></div>
                 @endforeach
         </div>

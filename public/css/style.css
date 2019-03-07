@@ -326,4 +326,8 @@ a{
 }
 .news-text {
     line-height: 50px;
+    text-align: center;
+}
+.panel-body {
+    margin: 50px 0;
 }

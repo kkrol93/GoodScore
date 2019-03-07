@@ -35,7 +35,14 @@ Route::prefix('admin')->group(function() {
   Route::patch('/news-panel/{id}', 'AdminController@updatenews');
   Route::delete('/news-panel/{id}', 'AdminController@destroynews');
   Route::get('/users-panel', 'AdminController@userspanel')->name('admin.users-panel');
+  Route::post('/users-panel', 'AdminController@useradd'); 
   Route::get('/users-panel/register', 'AdminController@registerpanel')->name('admin.register-panel');
+  Route::get('/users-panel', 'AdminController@userspanel')->name('admin.users-panel');  
+  Route::get('/users-panel/{id}', 'AdminController@edituser');
+  Route::patch('/users-panel/{id}', 'AdminController@updateuser');
+  Route::delete('/users-panel/{id}', 'AdminController@destroyuser');
+  Route::get('/changePassword','HomeController@showChangePasswordForm');
+  Route::post('/changePassword','HomeController@changePassword')->name('changePassword');
   Route::get('/scores-panel', 'AdminController@scorespanel')->name('admin.scores-panel');
   Route::get('/quiz-panel', 'AdminController@quizpanel')->name('admin.quiz-panel');
   Route::get('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
