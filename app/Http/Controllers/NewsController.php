@@ -12,5 +12,4 @@ class NewsController extends Controller
         $news = News::latest()->get();
         return view('home')->with('news', $news);
     }
-
 }

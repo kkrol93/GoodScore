@@ -42,8 +42,14 @@ class AdminController extends Controller
       News::create($input);
       return redirect('#');
     }
-    public function useradd()
+    public function useradd(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required|min:3|max:50',
+            'surname' => 'required|min:3|max:50',
+            'email' => 'email',
+            'password' => 'required|confirmed|min:6',
+        ]);
       $input = Request::all();
       User::create($input);
       return redirect('#');
@@ -61,15 +67,13 @@ class AdminController extends Controller
         $news = News::findorfail($id);
         $news->update($request->all());
         return redirect('/admin/news-panel');
-    }
- 
+    } 
     public function destroynews($id)
     {
         $news = News::find($id);
         $news->delete();
         return redirect('/admin/news-panel');
-    }
-    
+    }    
     public function userspanel()
     {
         $users = User::latest()->get();
@@ -82,8 +86,7 @@ class AdminController extends Controller
             return $user->total;
         });
         $userSum = User::avg('sales');
-        $userQuiz = User::avg('quiz');
-       
+        $userQuiz = User::avg('quiz');       
         return view('scores-panel')->with('usertable', $usertable)->with('usersum', $userSum)->with('userQuiz', $userQuiz);
     }
     public function quizpanel()
@@ -104,8 +107,7 @@ class AdminController extends Controller
     {
         $exam = exam::latest()->get();
         return view('quiz-panel')->with('exam', $exam);
-    }
-   
+    }   
     public function editexam($id)
     {
      $exam = exam::find($id);
@@ -119,8 +121,7 @@ class AdminController extends Controller
         $exam = exam::findorfail($id);
         $exam->update($request->all());
         return redirect('/admin/quiz-panel');
-    }
- 
+    } 
     public function destroyexam($id)
     {
         $exam = exam::find($id);
@@ -140,8 +141,7 @@ class AdminController extends Controller
         $user = User::findorfail($id);
         $user->update($request->all());
         return redirect('/admin/users-panel');
-    }
- 
+    } 
     public function destroyuser($id)
     {
         $user = User::find($id);

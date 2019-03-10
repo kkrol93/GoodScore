@@ -13,7 +13,7 @@
     @isset($subcopy)
         @slot('subcopy')
             @component('mail::subcopy')
-                {{ $subcopy }}
+                GoodScore
             @endcomponent
         @endslot
     @endisset
@@ -21,7 +21,7 @@
     {{-- Footer --}}
     @slot('footer')
         @component('mail::footer')
-            © {{ date('Y') }} {{ config('app.name') }}. @lang('All rights reserved.')
+            © {{ date('Y') }} GoodScore. @lang('All rights reserved.')
         @endcomponent
     @endslot
 @endcomponent
