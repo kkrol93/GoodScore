@@ -7,6 +7,7 @@
         <div class="col-md-5  panel-login">
             <div class="row  justify-content-center">
                 <div class="col-12 logo"><span>Good</span>Score<i class="fas fa-book-open"></i></div>
+                <div class="col-12" style="font-size: 24px; text-align:center; font-weight:700;">Admin</div>
                     <form method="POST" class="col-10" action="{{ route('admin.login.submit') }}">
                         @csrf
 

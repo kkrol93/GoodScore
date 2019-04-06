@@ -50,7 +50,7 @@
                                     </div>
                                 </div>        
                                 <div class="form-group">
-                                    <label for="new-password-confirm" class="col-md-12 control-label">Potórz hasło:</label>        
+                                    <label for="new-password-confirm" class="col-md-12 control-label">Powtórz hasło:</label>        
                                     <div class="col-md-12">
                                         <input id="new-password-confirm" type="password" class="" name="new-password_confirmation" required>
                                     </div>
